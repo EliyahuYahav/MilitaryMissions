@@ -13,7 +13,7 @@ export const GetMissions = async (): Promise<Mission[]> => {
     }
 }
 
-export const PostMission = async (Mission:Mission): Promise<void> =>{
+export const PostMission = async (Mission:Mission): Promise<Mission> =>{
     try {
         const response:AxiosResponse = await axios.post(`https://reactexambackend.onrender.com/missions/${API_KEY}`, Mission)
         return response.data;
@@ -24,8 +24,7 @@ export const PostMission = async (Mission:Mission): Promise<void> =>{
 
 export const DeleteMission = async (id:string): Promise<void> =>{
     try {
-        const response:AxiosResponse = await axios.delete(`https://reactexambackend.onrender.com/missions/${API_KEY}/${id}`)
-        return response.data;
+        await axios.delete(`https://reactexambackend.onrender.com/missions/${API_KEY}/${id}`)
     } catch (error) {
         throw new Error("Delete failed")
     }
@@ -33,8 +32,7 @@ export const DeleteMission = async (id:string): Promise<void> =>{
 
 export const UpdateMission = async (id:string): Promise<void> =>{
     try {
-        const response:AxiosResponse = await axios.post(`https://reactexambackend.onrender.com/missions/${API_KEY}/${id}`)
-        return response.data;
+        await axios.post(`https://reactexambackend.onrender.com/missions/${API_KEY}/progress/${id}`)
     } catch (error) {
         throw new Error("Post failed")
     }

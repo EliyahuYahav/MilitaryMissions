@@ -11,7 +11,7 @@ const MilMission:React.FC<MissionProps> = ({mission, deleteMission, updateMissio
 
     const handelProgress = ()=>{
         if (mission.status !== "Completed") {
-            return <button onClick={()=> updateMission(mission.id!)} className='progressB'>Progress</button>
+            return <button onClick={()=> updateMission(mission._id!)} className='progressB'>Progress</button>
         }
     }
 
@@ -24,7 +24,7 @@ const MilMission:React.FC<MissionProps> = ({mission, deleteMission, updateMissio
             <h4>Description:{mission.description}</h4>
         </div>
         <div className='buttons'>
-            <button onClick={()=>deleteMission(mission.id!)} className='deleteB'>Delete</button>
+            <button onClick={()=>deleteMission(mission._id!)} className='deleteB'>Delete</button>
             {handelProgress()}
         </div>
     </div>

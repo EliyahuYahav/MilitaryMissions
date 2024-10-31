@@ -1,5 +1,5 @@
 export interface Mission {
-  id?: string;
+  _id?: string;
   name: string;
   status: string;
   priority: string;

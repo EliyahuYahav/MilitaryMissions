@@ -10,22 +10,23 @@ const MilMissionsLIst:React.FC = () => {
   const [newMission, setnewMission] = useState<Mission | null>(null);
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
 
+  const loadMission = async () => {
+    try {
+      const data = await GetMissions();
+      setMissions(data);
+    } catch (error) {
+      setError("failed to load Mission");
+    }
+  };
+
   useEffect(() => {
-    const loadImages = async () => {
-      try {
-        const data = await GetMissions();
-        setMissions(data);
-      } catch (error) {
-        setError("failed to load Mission");
-      }
-    };
-    loadImages();
+    loadMission();
   }, []);
 
-  const handleAddMission = async (mission: Mission) => {
+  const addMission = async (mission: Mission) => {
     try {
-      await PostMission(mission)
-      setMissions((prev) => [...prev, mission]);
+      const data:Mission = await PostMission(mission)
+      setMissions((prev) => [...prev, data]);
     } catch (error) {
       setError("Mission nos found! ");
     }
@@ -34,6 +35,7 @@ const MilMissionsLIst:React.FC = () => {
   const deleteMission = async (id: string) => {
     try {
       await DeleteMission(id);
+      loadMission();
     } catch (error) {
       setError("Mission nos found! ");
     }
@@ -42,6 +44,7 @@ const MilMissionsLIst:React.FC = () => {
   const updateMission = async (id: string) => {
     try {
       await UpdateMission(id);
+      loadMission();
     } catch (error) {
       setError("Mission nos found! ");
     }
@@ -52,9 +55,9 @@ const MilMissionsLIst:React.FC = () => {
       <header>
         <h1>Military Operations Dashboard</h1>
         <main className="main">
-          <FormMissions addMission={handleAddMission}/>
+          <FormMissions addMission={addMission}/>
           {missions.map((mis)=>{
-              return <MilMission mission={mis} key={mis.id!} deleteMission={deleteMission} updateMission={updateMission}/>
+              return <MilMission mission={mis} key={mis._id!} deleteMission={deleteMission} updateMission={updateMission}/>
           })}
         </main>
       </header>
@@ -63,18 +66,3 @@ const MilMissionsLIst:React.FC = () => {
 }
 
 export default MilMissionsLIst
-
-
-// return(
-//   <div className="GalleryApp">
-//     <header>
-//       <h1>My Gallery App</h1>
-//     </header>
-//     <main className="main">
-//       {!error && <GalleryGrid images = {images} handleLike={handleLike} handleImageClick={handleImageClick}/>}
-//       {newImage && <ImageDetails image={newImage} onClose={()=>setnewImage(null)} handleLike={handleLike}/>}
-//       <AddNewImage handleAddImage={handleAddImage}/>
-//     </main>
-// </div>
-// );
-
