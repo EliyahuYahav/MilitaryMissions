@@ -1,11 +1,12 @@
+import React from 'react'
 import './App.css'
+import MilMissionsLIst from './components/MilMissionsList/MilMissionsLIst'
 
-function App() {
-
+const App:React.FC = () => {
   return (
-    <>
-      
-    </>
+    <div className='App'>
+      <MilMissionsLIst/>
+    </div>
   )
 }
 
