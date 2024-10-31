@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Mission } from '../../types/type'
 import './MilMission.css'
 
@@ -27,8 +27,12 @@ const MilMission:React.FC<MissionProps> = ({mission, deleteMission, updateMissio
         }
     }
 
+    useEffect(() => {
+        changColor()
+    },[])
+
   return (
-    <div className='MilMission' style={{color}}>
+    <div className='MilMission' style={{backgroundColor: color}}>
         <div className='info'>
             <h2>Name:{mission.name}</h2>
             <h4>Status:{mission.status}</h4>
