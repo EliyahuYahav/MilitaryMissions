@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Mission } from '../../types/type';
+import './FormMissions.css'
 
 interface TodoFormProps {
   addMission: (mission: Mission) => void;
@@ -31,21 +32,21 @@ const FormMissions:React.FC<TodoFormProps> = ({addMission}) => {
 
   return (
       <form className='FormMissions' onSubmit={handleSubmit}>
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="name"/>
-      <select onChange={(e) => setStatus(e.target.value)} name="status" className='selectStatus'>
+      <input className='form' type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="name"/>
+      <select className='form' onChange={(e) => setStatus(e.target.value)} name="status" id='selectStatus'>
         <option value=""></option>
         <option value="Pending">Pending</option>
         <option value="In Progress">In Progress</option>
         <option value="Completed">Completed</option>
       </select>
-      <select onChange={(e) => setPriority(e.target.value)} name="priority" className='selectPriority'>
+      <select className='form' onChange={(e) => setPriority(e.target.value)} name="priority" id='selectPriority'>
       <option value=""></option>
         <option value="High">High</option>
         <option value="Normal">Normal</option>
         <option value="Low">Low</option>
       </select>
-      <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="description"/>
-      <button type="submit">Add</button>
+      <input className='form' type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="description"/>
+      <button type="submit">Add Mission</button>
       </form>
   )
 }

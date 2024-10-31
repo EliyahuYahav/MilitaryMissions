@@ -1,0 +1,20 @@
+.MilMission {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: start;
+    padding: 10px;
+    margin: 10px;
+    gap: 10px;
+    border-radius: 8px;
+}
+
+.MilMission .deleteB{
+    background-color: #D7504C;
+}
+
+.MilMission .progressB{
+    background-color: #51E13C;
+}

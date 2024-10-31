@@ -7,8 +7,6 @@ import MilMission from '../MilMission/MilMission';
 const MilMissionsLIst:React.FC = () => {
   const [missions, setMissions] = useState<Mission[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [newMission, setnewMission] = useState<Mission | null>(null);
-  const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
 
   const loadMission = async () => {
     try {
@@ -56,6 +54,7 @@ const MilMissionsLIst:React.FC = () => {
         <h1>Military Operations Dashboard</h1>
         <main className="main">
           <FormMissions addMission={addMission}/>
+          <h2>Missions</h2>
           {missions.map((mis)=>{
               return <MilMission mission={mis} key={mis._id!} deleteMission={deleteMission} updateMission={updateMission}/>
           })}

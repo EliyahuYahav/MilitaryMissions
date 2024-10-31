@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Mission } from '../../types/type'
+import './MilMission.css'
 
 interface MissionProps {
     mission:Mission
@@ -8,6 +9,7 @@ interface MissionProps {
 }
 
 const MilMission:React.FC<MissionProps> = ({mission, deleteMission, updateMission}) => {
+    const [color, setColor] = useState<string>("")
 
     const handelProgress = ()=>{
         if (mission.status !== "Completed") {
@@ -15,9 +17,19 @@ const MilMission:React.FC<MissionProps> = ({mission, deleteMission, updateMissio
         }
     }
 
+    const changColor = ()=>{
+        if (mission.status === "Pending" ) {
+            setColor("#910000")
+        }else if(mission.status === "In Progress" ){
+            setColor("#BE7D00")
+        }else if(mission.status === "Completed" ){
+            setColor("#009115")
+        }
+    }
+
   return (
-    <div className='MilMission'>
-        <div>
+    <div className='MilMission' style={{color}}>
+        <div className='info'>
             <h2>Name:{mission.name}</h2>
             <h4>Status:{mission.status}</h4>
             <h4>Priority:{mission.priority}</h4>
