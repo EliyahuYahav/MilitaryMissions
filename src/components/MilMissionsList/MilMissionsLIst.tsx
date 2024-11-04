@@ -6,7 +6,7 @@ import MilMission from '../MilMission/MilMission';
 
 const MilMissionsLIst:React.FC = () => {
   const [missions, setMissions] = useState<Mission[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
 
   const loadMission = async () => {
     try {

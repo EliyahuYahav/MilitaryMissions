@@ -29,7 +29,7 @@ const MilMission:React.FC<MissionProps> = ({mission, deleteMission, updateMissio
 
     useEffect(() => {
         changColor()
-    },[])
+    })
 
   return (
     <div className='MilMission' style={{backgroundColor: color}}>
